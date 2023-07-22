@@ -47,7 +47,7 @@ df.R_yn.value_counts()
 df['spark_yn'] = df['Description'].apply(lambda x: 1 if 'spark' in x.lower() else 0)
 df.spark_yn.value_counts()
 #aws
-df['aws_yn'] = df['Description'].apply(lambda x: 1 if 'aws' or 'amazon web services' in x.lower() else 0)
+df['aws_yn'] = df['Description'].apply(lambda x: 1 if 'aws' in x.lower() else 0)
 df.aws_yn.value_counts()
 #excel
 df['excel_yn'] = df['Description'].apply(lambda x: 1 if 'excel' in x.lower() else 0)
