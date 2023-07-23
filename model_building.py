@@ -59,6 +59,7 @@ df_err[df_err.error == max(df_err.error)]
 from sklearn.ensemble import RandomForestRegressor
 rf = RandomForestRegressor()
 
+
 np.mean(cross_val_score(rf, X_train, y_train, scoring = 'neg_mean_absolute_error')) #-8.860477870765761
 
 # tune models GridsearchCV
@@ -81,3 +82,16 @@ mean_absolute_error(y_test,tpred_lml)
 mean_absolute_error(y_test,tpred_rf)
 
 mean_absolute_error(y_test,(tpred_lm+tpred_rf)/2)
+
+import pickle
+pick = {'model':gs.best_estimator_}
+pickle.dump(pick, open('model_file'+".p","wb"))
+
+file_name = "model_file.p"
+with open(file_name,'rb') as pickled:
+    data = pickle.load(pickled)
+    model = data['model']
+    
+model.predict(X_test.iloc[0].values.reshape(1,-1))
+
+X_test.iloc[0].values.reshape(1,-1)
